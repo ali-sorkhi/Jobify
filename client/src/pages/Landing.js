@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import main from "../assets/images/main.svg";
 import Wrapper from "../assets/wrappers/LandingPage";
 import { Logo } from "../components";
@@ -9,20 +10,22 @@ const Landing = () => {
         <Logo />
       </nav>
       <div className="container page">
+        <img src={main} alt="job hunt" className="img main-img" />
+
         <div className="info">
           <h1>
-            job <span>tracking</span> app
+            برنامه <span>کار</span> جو
           </h1>
           <p>
-            Irure anim anim sit Lorem officia irure. Irure fugiat ullamco
-            consectetur officia quis proident consectetur Lorem cillum do velit.
-            Eu eu labore proident adipisicing officia amet velit sint cillum
-            aliquip nisi commodo. Anim labore id voluptate deserunt id ex veniam
-            fugiat labore non culpa mollit aliqua consequat.
+            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
+            استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
+            ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز،
+            و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد،
           </p>
-          <button className="btn btn-hero">Login/Register</button>
+          <Link to="/register" className="btn btn-hero">
+            ورود / ثبت نام
+          </Link>
         </div>
-        <img src={main} alt="job hunt" className="img main-img" />
       </div>
     </Wrapper>
   );

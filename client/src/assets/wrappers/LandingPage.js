@@ -8,6 +8,8 @@ const Wrapper = styled.main`
     height: var(--nav-height);
     display: flex;
     align-items: center;
+    flex-direction: row-reverse;
+    float: right;
   }
   .page {
     min-height: calc(100vh - var(--nav-height));
@@ -16,17 +18,20 @@ const Wrapper = styled.main`
     margin-top: -3rem;
   }
   h1 {
+    text-align: right;
     font-weight: 700;
     span {
       color: var(--primary-500);
     }
   }
   p {
+    text-align: right;
     color: var(--grey-600);
     font-size: medium;
   }
   .main-img {
     display: none;
+    float: right;
   }
   @media (min-width: 992px) {
     .page {
