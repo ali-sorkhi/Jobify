@@ -10,8 +10,6 @@ const Landing = () => {
         <Logo />
       </nav>
       <div className="container page">
-        <img src={main} alt="job hunt" className="img main-img" />
-
         <div className="info">
           <h1>
             برنامه <span>کار</span> جو
@@ -26,6 +24,7 @@ const Landing = () => {
             ورود / ثبت نام
           </Link>
         </div>
+        <img src={main} alt="job hunt" className="img main-img" />
       </div>
     </Wrapper>
   );
