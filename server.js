@@ -3,6 +3,7 @@ import errorHandlerMidleware from "./middleware/error-handler.js";
 import notFoundMiddleware from "./middleware/not-found.js";
 import dotenv from "dotenv";
 import connectDB from "./db/connect.js";
+
 const app = express();
 
 dotenv.config();
