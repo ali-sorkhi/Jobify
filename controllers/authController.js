@@ -3,7 +3,7 @@ const register = (req, res) => {
 };
 
 const login = (req, res) => {
-  res.send("register user");
+  res.send("login user");
 };
 
 const updateUser = (req, res) => {
