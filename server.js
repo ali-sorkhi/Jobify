@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import "express-async-errors"; //we can remove try and catch
 
 //Database
 import connectDB from "./db/connect.js";
