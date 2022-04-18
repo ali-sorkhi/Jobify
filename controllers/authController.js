@@ -19,8 +19,20 @@ const register = async (req, res, next) => {
   if (userAlreadyExists) {
     throw new BadRequestError("ایمیل تکراری می باشد");
   }
+  //creating user in DB:
   const user = await User.create({ name, email, password });
-  res.status(StatusCodes.OK).json({ user });
+  //creating JWT:
+  const token = user.createJWT();
+
+  res.status(StatusCodes.OK).json({
+    user: {
+      email: user.email,
+      name: user.name,
+      lastName: user.lastName,
+      location: user.location,
+    },
+    token,
+  });
 };
 
 const login = async (req, res) => {

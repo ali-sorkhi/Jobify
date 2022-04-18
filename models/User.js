@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import validator from "validator";
 //for hashing password
 import bcrypt from "bcryptjs";
+//for json web token
+import jwt from "jsonwebtoken";
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -24,6 +26,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "لطفاً کلمه عبور خود را وارد کنید"],
     minlength: 6,
+    select: false,
   },
   lastName: {
     type: String,
@@ -45,5 +48,11 @@ UserSchema.pre("save", async function () {
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
+
+UserSchema.methods.createJWT = function () {
+  return jwt.sign({ userId: this._id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_LIFETIME,
+  });
+};
 
 export default mongoose.model("User", UserSchema);
