@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import validator from "validator";
+//for hashing password
+import bcrypt from "bcryptjs";
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -35,6 +37,13 @@ const UserSchema = new mongoose.Schema({
     trim: true,
     default: "my city",
   },
+});
+
+//this executes every time before save (findOneAndUpdate doesn't trigger this)
+//for hashing password
+UserSchema.pre("save", async function () {
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
 });
 
 export default mongoose.model("User", UserSchema);
