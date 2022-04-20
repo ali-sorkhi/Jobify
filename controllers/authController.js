@@ -32,6 +32,7 @@ const register = async (req, res, next) => {
       location: user.location,
     },
     token,
+    location: user.location,
   });
 };
 
