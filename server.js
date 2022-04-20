@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import "express-async-errors"; //we can remove try and catch
+import morgan from "morgan";
 
 //Database
 import connectDB from "./db/connect.js";
@@ -16,6 +17,10 @@ import notFoundMiddleware from "./middleware/not-found.js";
 const app = express();
 
 dotenv.config();
+
+if (process.env.NODE_ENV !== "production") {
+  app.use(morgan("dev"));
+}
 
 app.use(express.json());
 
