@@ -1,16 +1,32 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { Landing, Register, Dashboard, Error } from "./pages";
+import { Landing, Register, Error, ProtectedRoute } from "./pages";
+import {
+  AddJob,
+  AllJobs,
+  Profile,
+  SharedLayout,
+  Stats,
+} from "./pages/dashboard";
 
 function App() {
   return (
     <BrowserRouter>
-      <nav>
-        <Link to="/">Dashboard</Link>
-        <Link to="/register">register</Link>
-        <Link to="/landing">landing</Link>
-      </nav>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        {/* adding nested pages with shared components: */}
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <SharedLayout />
+            </ProtectedRoute>
+          }
+        >
+          {/* making stats page the default by index: */}
+          <Route index element={<Stats />} />
+          <Route path="add-job" element={<AddJob />} />
+          <Route path="all-jobs" element={<AllJobs />} />
+          <Route path="profile" element={<Profile />} />
+        </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/landing" element={<Landing />} />
         <Route path="*" element={<Error />} />
