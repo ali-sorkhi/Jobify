@@ -1,14 +1,19 @@
 import { Outlet, Link } from "react-router-dom";
 import Wrapper from "../../assets/wrappers/SharedLayout";
-
+import { Navbar, SmallSidebar, BigSidebar } from "../../components";
 function SharedLayout() {
   return (
     <Wrapper>
-      <nav>
-        <Link to="add-job">افزودن شغل</Link>
-        <Link to="all-jobs">همه شغل ها</Link>
-      </nav>
-      <Outlet />
+      <main className="dashboard">
+        <SmallSidebar />
+        <BigSidebar />
+        <div>
+          <Navbar />
+          <div className="dashboard-page">
+            <Outlet />
+          </div>
+        </div>
+      </main>
     </Wrapper>
   );
 }
