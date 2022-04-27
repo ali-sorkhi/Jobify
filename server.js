@@ -13,6 +13,7 @@ import jobsRouter from "./routes/jobsRoutes.js";
 //middlewares
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 import notFoundMiddleware from "./middleware/not-found.js";
+import authenticateUser from "./middleware/auth.js";
 
 const app = express();
 
@@ -25,12 +26,12 @@ if (process.env.NODE_ENV !== "production") {
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("wellcome");
+  res.send("welcome");
 });
 
 //routes:
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/jobs", jobsRouter);
+app.use("/api/v1/jobs", authenticateUser, jobsRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
