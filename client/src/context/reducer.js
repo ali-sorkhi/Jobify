@@ -7,9 +7,14 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_ERROR,
   LOGIN_USER_SUCCESS,
+  TOGGLE_SIDEBAR,
+  LOGOUT_USER,
 } from "./actions";
 
+import { initialState } from "./appContext";
+
 const reducer = (state, action) => {
+  /* ---------------------------------- ALERT --------------------------------- */
   if (action.type === DISPLAY_ALERT) {
     return {
       ...state,
@@ -26,6 +31,7 @@ const reducer = (state, action) => {
       alertText: "",
     };
   }
+  /* ------------------------------ REGISTER_USER ----------------------------- */
   if (action.type === REGISTER_USER_BEGIN) {
     return { ...state, isLoading: true };
   }
@@ -52,6 +58,7 @@ const reducer = (state, action) => {
       alertText: action.payload.msg,
     };
   }
+  /* ------------------------------- LOGIN_USER ------------------------------- */
   if (action.type === LOGIN_USER_BEGIN) {
     return { ...state, isLoading: true };
   }
@@ -78,6 +85,25 @@ const reducer = (state, action) => {
       alertText: action.payload.msg,
     };
   }
+  /* ----------------------------- TOGGLE_SIDEBAR ----------------------------- */
+  if (action.type === TOGGLE_SIDEBAR) {
+    return {
+      ...state,
+      showSidebar: !state.showSidebar,
+    };
+  }
+  /* ------------------------------- LOGOUT_USER ------------------------------ */
+  if (action.type === LOGOUT_USER) {
+    return {
+      ...initialState,
+      user: null,
+      token: null,
+      userLocation: "",
+      jobLocation: "",
+    };
+  }
+
+  /* ---------------------------------- Error --------------------------------- */
   throw new Error(`no such action: ${action.type}`);
 };
 
